@@ -1,9 +1,15 @@
+import { useAuth } from "./contexts/useAuth";
+import { SignUp } from "./pages/SignUp";
+import { Feed } from "./pages/Feed";
+
 function App() {
-  return (
-    <div>
-      <h1>CodeLeap Frontend Test</h1>
-    </div>
-  );
+  const { username } = useAuth();
+
+  if (!username) {
+    return <SignUp />;
+  }
+
+  return <Feed />;
 }
 
 export default App;
