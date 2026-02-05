@@ -1,5 +1,8 @@
 import type { Post } from "../../types/Post";
+import DeleteIcon from "./deleteIcon";
+import EditIcon from "./editIcon";
 import "./styles.css";
+import { timeAgo } from "../../utils/timeAgo";
 
 type PostCardProps = {
   post: Post;
@@ -16,19 +19,27 @@ export function PostCard({ post, isOwner, onEdit, onDelete }: PostCardProps) {
 
         {isOwner && (
           <div className="post-actions">
-            <button onClick={() => onEdit(post)}>Edit</button>
             <button className="delete" onClick={() => onDelete(post.id)}>
-              Delete
+              <DeleteIcon />
+            </button>
+            <button onClick={() => onEdit(post)}>
+              <EditIcon />
             </button>
           </div>
         )}
       </div>
 
-      <div className="post-meta">
-        @{post.username} • {new Date(post.created_datetime).toLocaleString()}
-      </div>
+      <div className="post-body">
+        <div className="post-meta">
+          <span className="post-meta__name">@{post.username}</span>
 
-      <p>{post.content}</p>
+          <span className="post-meta__time">
+            {timeAgo(post.created_datetime)}
+          </span>
+        </div>
+
+        <p className="post-meta__content">{post.content}</p>
+      </div>
     </div>
   );
 }

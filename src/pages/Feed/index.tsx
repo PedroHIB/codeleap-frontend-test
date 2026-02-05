@@ -5,6 +5,7 @@ import { useAuth } from "../../contexts/useAuth";
 
 import { PostCard } from "../../components/PostCard";
 import { EditPostModal } from "../../components/EditPostModal";
+import { DeletePostModal } from "../../components/DeletePostModal";
 
 import type { Post } from "../../types/Post";
 
@@ -20,6 +21,7 @@ export function Feed() {
   const [content, setContent] = useState("");
 
   const [editingPost, setEditingPost] = useState<Post | null>(null);
+  const [postToDelete, setPostToDelete] = useState<number | null>(null);
 
   function handleCreatePost() {
     if (!username) return;
@@ -35,12 +37,28 @@ export function Feed() {
     setEditingPost(post);
   }
 
-  function handleCloseModal() {
+  function handleCloseEditModal() {
     setEditingPost(null);
   }
 
   function handleSaveEdit(id: number, title: string, content: string) {
     editPost(id, title, content);
+    setEditingPost(null);
+  }
+
+  function handleDeleteRequest(id: number) {
+    setPostToDelete(id);
+  }
+
+  function handleCancelDelete() {
+    setPostToDelete(null);
+  }
+
+  function handleConfirmDelete() {
+    if (!postToDelete) return;
+
+    deletePost(postToDelete);
+    setPostToDelete(null);
   }
 
   if (loading) return <p>Loading...</p>;
@@ -48,17 +66,21 @@ export function Feed() {
 
   return (
     <div className="container feed">
-      <h2>Feed</h2>
+      <h2>CodeLeap Network</h2>
 
-      <div>
+      <div className="formContainer">
+        <h3>What’s on your mind?</h3>
+
+        <label>Title</label>
         <input
-          placeholder="Title"
+          placeholder="Hello world"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
+        <label>Content</label>
         <textarea
-          placeholder="Content"
+          placeholder="Content here"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
@@ -77,15 +99,21 @@ export function Feed() {
           post={post}
           isOwner={post.username === username}
           onEdit={handleEdit}
-          onDelete={deletePost}
+          onDelete={handleDeleteRequest}
         />
       ))}
 
       <EditPostModal
         post={editingPost}
         isOpen={!!editingPost}
-        onClose={handleCloseModal}
+        onClose={handleCloseEditModal}
         onSave={handleSaveEdit}
+      />
+
+      <DeletePostModal
+        isOpen={postToDelete !== null}
+        onCancel={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
       />
     </div>
   );

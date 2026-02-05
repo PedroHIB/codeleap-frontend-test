@@ -12,18 +12,21 @@ export function SignUp() {
   }
 
   return (
-    <div className="container signup">
-      <h2>Welcome to CodeLeap network!</h2>
+    <div className="modalContainer">
+      <div className="container signup">
+        <h2>Welcome to CodeLeap network!</h2>
 
-      <input
-        placeholder="Please enter your username"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
+        <label>Please enter your username</label>
+        <input
+          placeholder="John doe"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
 
-      <button disabled={!value.trim()} onClick={handleSubmit}>
-        ENTER
-      </button>
+        <button disabled={!value.trim()} onClick={handleSubmit}>
+          ENTER
+        </button>
+      </div>
     </div>
   );
 }

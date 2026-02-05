@@ -29,20 +29,31 @@ export function EditPostModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h3>Edit post</h3>
+      <h3>Edit item</h3>
 
-      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      <div className="formEdit">
+        <span>Title</span>
+        <input
+          value={title}
+          placeholder="Hello world"
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-      <textarea value={content} onChange={(e) => setContent(e.target.value)} />
+        <span>Content</span>
+        <textarea
+          value={content}
+          placeholder="Content here"
+          onChange={(e) => setContent(e.target.value)}
+        />
 
-      <div className="modal-actions">
-        <button onClick={onClose}>Cancel</button>
-        <button
-          onClick={handleSave}
-          style={{ background: "var(--primary)", color: "#fff" }}
-        >
-          Save
-        </button>
+        <div className="modal-actions">
+          <button className="cancel" onClick={onClose}>
+            Cancel
+          </button>
+          <button className="save" onClick={handleSave}>
+            Save
+          </button>
+        </div>
       </div>
     </Modal>
   );
