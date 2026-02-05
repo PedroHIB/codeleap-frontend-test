@@ -1,0 +1,36 @@
+.post {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-header h3 {
+  margin: 0;
+}
+
+.post-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 8px 0;
+}
+
+.post-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.post-actions button {
+  background: transparent;
+  color: var(--primary);
+}
+
+.post-actions .delete {
+  color: var(--danger);
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../contexts/useAuth";
+import "./styles.css";
 
 export function SignUp() {
   const [value, setValue] = useState("");
@@ -11,7 +12,7 @@ export function SignUp() {
   }
 
   return (
-    <div>
+    <div className="container signup">
       <h2>Welcome to CodeLeap network!</h2>
 
       <input

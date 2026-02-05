@@ -1,0 +1,53 @@
+:root {
+  --primary: #7695ec;
+  --primary-dark: #5a79d6;
+  --danger: #ff5151;
+  --text: #000000;
+  --muted: #777777;
+  --border: #dddddd;
+  --bg: #f5f5f5;
+  --white: #ffffff;
+
+  --radius: 8px;
+  --container: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 40px auto;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

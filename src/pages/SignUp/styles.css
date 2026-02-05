@@ -1,0 +1,19 @@
+.signup {
+  padding: 24px;
+}
+
+.signup h2 {
+  margin-bottom: 16px;
+}
+
+.signup button {
+  margin-top: 16px;
+  background: var(--primary);
+  color: var(--white);
+  padding: 10px 16px;
+}
+
+.signup button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
